@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bacon Electronics Repair | Lancaster, CA</title>
+    <!-- Icon Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        /* Modern Design System Tokens */
+        :root {
+            --bg-deep: #060b13;
+            --bg-surface: #0e1726;
+            --bg-card: rgba(20, 33, 61, 0.6);
+            --accent-orange: #ff7b00;
+            --accent-orange-glow: rgba(255, 123, 0, 0.35);
+            --accent-blue: #00b4d8;
+            --accent-blue-glow: rgba(0, 180, 216, 0.25);
+            --text-main: #f8f9fa;
+            --text-sub: #b0b9c6;
+            --border-glow: rgba(255, 123, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Tech-Themed Ambient Background */
+        body {
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 180, 216, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(255, 123, 0, 0.08) 0px, transparent 50%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Creative Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1b2a4a;
+            border-radius: 5px;
+            border: 2px solid var(--bg-deep);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-orange);
+        }
+
+        /* Futuristic Glassmorphic Navigation */
+        nav {
+            background: rgba(6, 11, 19, 0.75);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 6%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-group img {
+            height: 55px;
+            width: auto;
+            filter: drop-shadow(0 0 8px var(--accent-orange-glow));
+            transition: transform 0.4s ease;
+        }
+
+        .logo-group:hover img {
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .brand-name span {
+            color: var(--accent-orange);
+            text-shadow: 0 0 10px var(--accent-orange-glow);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a:hover {
+            color: var(--text-main);
+        }
+
+        /* Animated underline on hover */
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-orange);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px var(--accent-orange);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Creative Hero Showcase Section */
+        .hero-container {
+            padding: 160px 6% 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            min-height: 95vh;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            flex: 1.2;
+        }
+
+        .badge {
+            background: rgba(255, 123, 0, 0.1);
+            border: 1px solid rgba(255, 123, 0, 0.3);
+            color: var(--accent-orange);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 8px rgba(255, 123, 0, 0.1);
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(135deg, #fff 30%, var(--accent-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-sub);
+            margin-bottom: 40px;
+            max-width: 580px;
+        }
+
+        /* High-tech Action Button */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--accent-orange), #ff9100);
+            color: var(--text-main);
+            padding: 16px 35px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 20px var(--accent-orange-glow);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-action i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 123, 0, 0.5);
+        }
+
+        .btn-action:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Hero Image/Logo Hex Frame */
+        .hero-display {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .image-glow-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .image-glow-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 10%;
+            background: var(--accent-blue);
+            filter: blur(60px);
+            opacity: 0.25;
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        .hero-display img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Showstopping Grid Section */
+        .main-section {
+            padding: 100px 6%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-sub);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Hex-Glass Service Grid */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            padding: 45px 35px;
+            border-radius: 16px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Interactive slide-up subtle border accent */
+        .service-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-blue);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-panel:hover {
+            transform: translateY(-8px);
+            background: rgba(20, 33, 61, 0.85);
+            border-color: rgba(255, 123, 0, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 123, 0, 0.05);
+        }
+
+        .service-panel:hover::before {
+            opacity: 1;
+        }
+
+        .panel-top i {
+            font-size: 2.6rem;
+            background: linear-gradient(135deg, var(--accent-blue), #00f5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        /* Specific orange accent shift for foundational diagnostics */
+        .service-panel:nth-child(1) .panel-top i {
+            background: linear-gradient(135deg, var(--accent-orange), #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-panel h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .service-panel p {
+            color: var(--text-sub);
+            font-size: 0.98rem;
+            margin-bottom: 25px;
+        }
+
+        .price-display {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+            margin-top: auto;
+        }
+
+        .price-display span {
+            font-size: 1rem;
+            color: var(--text-sub);
+            font-weight: 400;
+        }
+
+        .price-display.highlight {
+            color: var(--accent-orange);
+        }
+
+        /* Integrated Contact Segment */
+        .contact-deck {
+            background: radial-gradient(circle at top right, rgba(0, 180, 216, 0.12), transparent), var(--bg-surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 60px;
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .contact-hub {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .hub-link {
+            background: rgba(6, 11, 19, 0.5);
+            padding: 20px 35px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .hub-link i {
+            color: var(--accent-orange);
+            font-size: 1.3rem;
+        }
+
+        .hub-link:hover {
+            border-color: var(--accent-blue);
+            background: rgba(6, 11, 19, 0.8);
+            transform: translateY(-2px);
+        }
+
+        /* Creative Premium Footer */
+        footer {
+            background-color: #03060a;
+            text-align: center;
+            padding: 35px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            color: #525f73;
+            letter-spacing: 0.5px;
+        }
+
+        footer span {
+            color: var(--text-sub);
+        }
+
+        /* Elegant Responsive Layout Tweaks */
+        @media (max-width: 992px) {
+            .hero-container {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 150px;
+                gap: 40px;
+            }
+            .hero-content p {
+                margin: 0 auto 40px;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .nav-menu {
+                display: none; /* Optimized mobile neatness */
+            }
+            .contact-deck {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Premium Navigation -->
+    <nav>
+        <div class="logo-group">
+            <img src="watermarked_img_2394617683898610467.png" alt="Bacon Electronics Repair Logo">
+            <div class="brand-name">Bacon <span>Electronics</span></div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services & Rates</a></li>
+            <li><a href="#contact">Contact Hub</a></li>
+        </ul>
+    </nav>
+
+    <!-- Visual Masterpiece Hero Area -->
+    <main id="home" class="hero-container">
+        <div class="hero-content">
+            <div class="badge">Antelope Valley Premium Tech Support</div>
+            <h1>Don't Replace It.<br><span>Repair & Tune It.</span></h1>
+            <p>From micro-soldering smartwatches to setting up multi-threaded gaming rigs, we deliver premier hardware repair and diagnostic troubleshooting locally in Lancaster, CA.</p>
+            <a href="#contact" class="btn-action">
+                Book General Repair <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="hero-display">
+            <div class="image-glow-wrapper">
+                <img src="watermarked_img_2394617683898610467.png" alt="Bacon Electronics Tech Banner Logo">
+            </div>
+        </div>
+    </main>
+
+    <!-- Services Section -->
+    <section class="main-section" id="services">
+        <div class="section-header">
+            <h2>Bench Services & Transparent Rates</h2>
+            <p>High-end technical precision without corporate pricing. You only pay for successful results.</p>
+        </div>
+
+        <div class="showcase-grid">
+            <!-- Card 1: Diagnostics -->
+            <div class="service-panel">
+                <div class="panel-top">
+                    <i class="fas fa-search-dollar"></i>
+                    <h3>Diagnostic Bench Run</h3>
+                    <p>Complete multi-point diagnostic testing to discover component level issues.</p>
+                </div>
+                <div class="price-display highlight">$45 <span>*Waived if repaired</span></div>
+            </div>
+
+            <!-- Card 2: Smart Phones -->
+            <div class="service-panel">
+                <div class="panel-top">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Smartphones</h3>
+                    <p>Screen replacements, battery swaps, and structural assembly re-seals for iPhone & Android.</p>
+                </div>
+                <div class="price-display">$65 <span>+ parts</span></div>
+            </div>
+
+            <!-- Card 3: Tablets -->
+            <div class="service-panel">
+                <div class="panel-top">
+                    <i class="fas fa-tablet-alt"></i>
+                    <h3>Tablets & iPads</h3>
+                    <p>Precision digitizer separating, chassis flattening, glass overhauls, and charging terminal cleanups.</p>
+                </div>
+                <div class="price-display">$85 <span>+ parts</span></div>
+            </div>
+
+            <!-- Card 4: Smartwatches -->
+            <div class="service-panel">
+                <div class="panel-top">
+                    <i class="fas fa-stopwatch"></i>
+                    <h3>Smartwatches</h3>
+                    <p>Intricate optical sensor glass swapping, miniature dynamic battery replacements, and OLED fixes.</p>
+                </div>
+                <div class="price-display">$75 <span>+ parts</span></div>
+            </div>
+
+            <!-- Card 5: Game Consoles -->
+            <div class="service-panel">
+                <div class="panel-top">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Gaming Systems</h3>
+                    <p>HDMI port reflow structural welds, disk loader restorations, and thermal paste management.</p>
+                </div>
+                <div class="price-display">$69 <span>+ parts</span></div>
+            </div>
+
+            <!-- Card 6: Custom PCs & Systems -->
+            <div class="service-panel">
+                <div class="panel-top">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Custom PC Tuning</h3>
+                    <p>Clean system packaging, wire dressing management, secure boot environment configurations, and core benchmarks.</p>
+                </div>
+                <div class="price-display">$85 - $120 <span>Flat Rates</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creative Contact Deck -->
+    <section class="main-section" id="contact">
+        <div class="contact-deck">
+            <h2>Ready to Initialize Your Repair?</h2>
+            <p>Get in touch directly. Drop a line or arrange a local hardware hand-off in Lancaster.</p>
+            <div class="contact-hub">
+                <div class="hub-link">
+                    <i class="fas fa-map-marker-alt"></i> <span>Lancaster, CA</span>
+                </div>
+                <div class="hub-link">
+                    <i class="fas fa-envelope"></i> <span>contact@baconelectronics.com</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sleek Tech Footer -->
+    <footer>
+        &copy; 2026 <span>Bacon Electronics Repair</span>. Engineered locally in the Antelope Valley.
+    </footer>
+
+</body>
+</html>
